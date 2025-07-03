@@ -1,0 +1,18 @@
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
+
+import com.example.Transaction; // Assuming this is the transaction class
+
+@Component
+public class TransactionKafkaListener {
+
+    @Value("${kafka.topic.transactions}")
+    private String topic;
+
+    @KafkaListener(topics = "${kafka.topic.transactions}")
+    public void receiveTransaction(Transaction transaction) {
+        // For now, just log the transaction or do nothing, as per the task
+        System.out.println("Received transaction: " + transaction);
+    }
+}
